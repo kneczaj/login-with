@@ -2,10 +2,11 @@ import React from 'react'
 import withProfile from '../with-profile'
 import withLayout from '../with-layout'
 import LoggedInNotification from '../components/LoggedInNotification'
+import { REACT_APP_API_URL } from '../env'
 
 const LoginWith = ({service, redirect}) => (
   <div className='login'>
-    <a className='button is-medium' href={`${process.env.REACT_APP_API_URL}/${service.toLowerCase()}?success=${redirect}&failure=${redirect}`} >
+    <a className='button is-medium' href={`${REACT_APP_API_URL}/${service.toLowerCase()}?success=${redirect}&failure=${redirect}`} >
       <span className='icon is-medium'><i className={`fa fa-${service.toLowerCase()}`} /></span>
       <span>Login with <strong>{service}</strong></span>
     </a>

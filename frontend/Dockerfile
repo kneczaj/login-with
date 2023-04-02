@@ -7,7 +7,8 @@ RUN yarn install
 COPY components/ ./components
 COPY pages/ ./pages
 COPY static/ ./static
-COPY fetch-with-cookies.js with-layout.js with-profile.js ./
+COPY fetch-with-cookies.js with-layout.js with-profile.js env.js ./
 
 RUN yarn build
+ENV REACT_APP_API_URL="/api"
 CMD ["yarn", "start"]

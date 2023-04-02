@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { REACT_APP_API_URL } from '../env'
 
 export default ({profile = false, origin, url}) => (
   <nav className='nav has-shadow'>
@@ -35,7 +36,7 @@ export default ({profile = false, origin, url}) => (
       {
         (profile && url.pathname === '/profile') &&
         <div className='nav-center'>
-          <a className='nav-item' href={`${process.env.REACT_APP_API_URL}/logout?success=${origin}`}>Logout</a>
+          <a className='nav-item' href={`${REACT_APP_API_URL}/logout?success=${origin}`}>Logout</a>
         </div>
       }
       {

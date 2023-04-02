@@ -4,6 +4,7 @@ import withLayout from '../with-layout'
 import KeyValueTable from '../components/KeyValueTable'
 import flatten from 'flat'
 import fetchWithCookies from '../fetch-with-cookies'
+import { REACT_APP_TOKEN_DECRYPTOR_URL } from '../env'
 
 const jwtText = `
 This is your complete confidential login information turned into a JSON Web-Token (JWT).
@@ -24,7 +25,7 @@ class Token extends React.Component {
           }
         }
       } else {
-        result = await fetchWithCookies(process.env.REACT_APP_TOKEN_DECRYPTOR_URL, req)
+        result = await fetchWithCookies(REACT_APP_TOKEN_DECRYPTOR_URL, req)
       }
       return {result}
     } catch (error) {
