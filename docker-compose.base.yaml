@@ -3,3 +3,20 @@ version: '3.7'
 services:
   login-service:
     build: ./service
+    environment:
+      PORT: ${LOGIN_PORT}
+      LW_JWT_SECRET: ${LW_JWT_SECRET}
+      LW_SESSION_SECRET: ${LW_SESSION_SECRET}
+      LW_SUBDOMAIN: ${LW_SUBDOMAIN}
+      LW_GOOGLE_CLIENTID: ${LW_GOOGLE_CLIENTID}
+      LW_GOOGLE_CLIENTSECRET: ${LW_GOOGLE_CLIENTSECRET}
+  token-decrypter:
+    build: ./token-decrypter
+    environment:
+      LW_JWT_SECRET: ${LW_JWT_SECRET}
+      PORT: ${TOKEN_DECRYPTER_PORT}
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_TOKEN_DECRYPTOR_URL: /token-decrypter

@@ -2,4 +2,13 @@ version: '3.7'
 
 services:
   login-service:
-    build: ./service
+    ports:
+      - "${LOGIN_PORT}:${LOGIN_PORT}"
+  token-decrypter:
+    ports:
+      - "${TOKEN_DECRYPTER_PORT}:${TOKEN_DECRYPTER_PORT}"
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_TOKEN_DECRYPTOR_URL: token-decrypter

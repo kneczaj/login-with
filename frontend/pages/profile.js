@@ -6,7 +6,7 @@ import flatten from 'flat'
 import fetchWithCookies from '../fetch-with-cookies'
 
 const jwtText = `
-This is your complete confidential login information turned into a JSON Web-Token (JWT). 
+This is your complete confidential login information turned into a JSON Web-Token (JWT).
 The JWT is stored as http-only cookie, which is not accessible via Javascript from the Browser.
 Other webservices / microservices which share the same top-level domain can read the JWT if they know the secret.
 `
@@ -24,7 +24,7 @@ class Token extends React.Component {
           }
         }
       } else {
-        result = await fetchWithCookies('https://token-decryptor.login-with.com', req)
+        result = await fetchWithCookies(process.env.REACT_APP_TOKEN_DECRYPTOR_URL, req)
       }
       return {result}
     } catch (error) {

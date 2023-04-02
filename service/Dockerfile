@@ -1,9 +1,8 @@
-FROM node:10-alpine
-RUN mkdir -p /usr/src/app
+FROM node:14.17
 WORKDIR /usr/src/app
-COPY package.json /usr/src/app/
-RUN npm i --production
-COPY . /usr/src/app
-EXPOSE 3000
+COPY package.json package-lock.json ./
+RUN npm install
+COPY src/ ./src
+COPY index.js server.js ./
 ENV NODE_ENV production
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

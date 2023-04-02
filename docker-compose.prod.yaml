@@ -1,13 +1,18 @@
 version: '3.7'
 
+# this part is mainly to bind all services to the port which are used by nginx at the target server
 services:
   login-service:
     ports:
-      # there is another nginx at the server to support https and redirect it to 8083
-      - "8083:3000"
-    environment:
-      LW_JWT_SECRET: ${LW_JWT_SECRET}
-      LW_SESSION_SECRET: ${LW_SESSION_SECRET}
-      LW_SUBDOMAIN: ${LW_SUBDOMAIN}
-      LW_GOOGLE_CLIENTID: ${LW_GOOGLE_CLIENTID}
-      LW_GOOGLE_CLIENTSECRET: ${LW_GOOGLE_CLIENTSECRET}
+      - "8083:${LOGIN_PORT}"
+  token-decrypter:
+    ports:
+      - "8084:${TOKEN_DECRYPTER_PORT}"
+  frontend:
+    ports:
+      - "8085:3000"
+    build:
+      context: ./frontend
+      args:
+        # at the target server token-decrypter is available at this relative path
+        REACT_APP_TOKEN_DECRYPTOR_URL: /token-decrypter
