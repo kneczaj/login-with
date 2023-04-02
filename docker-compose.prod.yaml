@@ -16,3 +16,4 @@ services:
       args:
         # at the target server token-decrypter is available at this relative path
         REACT_APP_TOKEN_DECRYPTOR_URL: /token-decrypter
+        REACT_APP_API_URL: /api

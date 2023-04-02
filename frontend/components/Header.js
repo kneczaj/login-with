@@ -35,7 +35,7 @@ export default ({profile = false, origin, url}) => (
       {
         (profile && url.pathname === '/profile') &&
         <div className='nav-center'>
-          <a className='nav-item' href={`https://auth.login-with.com/logout?success=${origin}`}>Logout</a>
+          <a className='nav-item' href={`${process.env.REACT_APP_API_URL}/logout?success=${origin}`}>Logout</a>
         </div>
       }
       {

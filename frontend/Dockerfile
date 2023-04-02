@@ -1,6 +1,7 @@
 FROM node:14.17 as build-deps
 WORKDIR /usr/src/app
 ARG REACT_APP_TOKEN_DECRYPTOR_URL
+ARG REACT_APP_API_URL
 COPY package.json yarn.lock ./
 RUN yarn install
 COPY components/ ./components
