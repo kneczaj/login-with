@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  login-service:
+    ports:
+      # there is another nginx at the server to support https and redirect it to 8083
+      - "8083:3000"
+    environment:
+      LW_JWT_SECRET: ${LW_JWT_SECRET}
+      LW_SESSION_SECRET: ${LW_SESSION_SECRET}
+      LW_SUBDOMAIN: ${LW_SUBDOMAIN}
+      LW_GOOGLE_CLIENTID: ${LW_GOOGLE_CLIENTID}
+      LW_GOOGLE_CLIENTSECRET: ${LW_GOOGLE_CLIENTSECRET}
